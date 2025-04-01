@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 6000px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: black ;
+        }
+        p {
+            margin: 10px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn {
+            text-decoration: none;
+            padding: 5px 15px;
+            border-radius: 5px;
+            color: white;
+            background-color: #007bff;
+            margin: 5px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .mt-4 {
+            margin-top: 20px;
+        }
+        .profile {
+            margin-left: 1200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+
+        {% if customer_name %}
+            <h1 class="text-center welcome">Welcome to Customer Dashboard</h1>
+            <p class="text-center">Hi <strong>{{ customer_name }}</strong>!</p>
+            <p class="text-center">Your Customer ID is: <strong>{{ customer_id }}</strong></p>
+            <div class="text-center mt-4">
+                <a id="redirectBtn" href="{{ url_for('customer_dashboard', customer_id = customer_id)}}" class="btn">Home</a>
+                <a href="{{ url_for('search', customer_id=customer_id)}}" class="btn">Search</a>
+                <a  class="btn" href="login">Logout</a>
+            </div>
+            
+            <div class="text-center profile mt-4">
+                <a href="#" class="btn">Go to Profile</a>
+            </div>
+            <div class="mt-4"></div>
+                {% if customer_detail %}
+                    <h3>My Details:</h3>
+                    <div>
+                        {% for detail in customer_detail %}
+                            <div> Name: {{ detail[0] }}</div> 
+                            <div> Email: {{detail[1]}}</div>
+                            <div>Mobile: {{detail[2]}}</div>
+                            <div>Address: {{detail[3]}}</div>
+                            <div>City: {{detail[4]}}</div>
+                            <div>Pincode: {{detail[5]}}</div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p>No professional details available.</p>
+                {% endif %}
+            </div>
+
+        {% elif professional_name %}
+            <h1 class="text-center welcome">Welcome to Professional Dashboard</h1>
+            <p class="text-center">Hi <strong>{{ professional_name }}</strong>!</p>
+            <p class="text-center">Your professional ID is: <strong>{{ professional_id }}</strong></p>
+            <div class="text-center mt-4">
+                <a id="redirectBtn" href="{{ url_for('professional_dashboard', professional_id=professional_id) }}" class="btn">Home</a>
+                <a href="{{ url_for('search', professional_id = professional_id)}}" class="btn">Search</a>
+                <a class="btn" href="login">Logout</a>
+            </div>
+            
+            <div class="text-center profile mt-4">
+                <a href="{{ url_for('profile', professional_id=professional_id) }}" class="btn">Go to Profile</a>
+            </div>
+        
+            <div class="mt-4">
+                {% if prof_details %}
+                    <h3>My Details:</h3>
+                    <div>
+                        {% for detail in prof_details %}
+                            <div> Name: {{ detail[0] }}</div> 
+                            <div> Email: {{detail[1]}}</div>
+                            <div>Mobile: {{detail[2]}}</div>
+                            <div>Address: {{detail[3]}}</div>
+                            <div>City: {{detail[4]}}</div>
+                            <div>Pincode: {{detail[5]}}</div>
+                            <div>Experience: {{detail[6]}}</div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p>No professional details available.</p>
+                {% endif %}
+            </div>
+        
+        {% else %}
+            <p class="text-center">Customer not found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

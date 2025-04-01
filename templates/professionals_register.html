@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <style>
+        .dropdown {
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 260px;
+
+        }
+
+        .dropdown-content a {
+            color: black;
+            text-decoration: none;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #000000;
+            color: rgb(255, 255, 255);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body class="container mt-5">
+    <form id="user-form" action="/professionals/register" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="service-type">Service Type:</label>
+            {% if main_services %}
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton">
+                        Select an Option
+                    </button>
+                    <div class="dropdown-content">
+                        {% for service in main_services %}
+                            <a class="dropdown-item btn" href="{{ url_for('register_professionals',  name_or_type=service[0]) }}">{{ service[0] }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% else %}
+                {% if sub_services %}
+                    <select class="form-control" id="service-type" name="service_type" required>
+                        <option value="">Please Select a Exact Service that your are going to give</option>
+                        {%  for i in sub_services %}
+                            
+                            <option class="btn" value="{{ i}}">I confirm that I am Going to do {{i.0}} and my speciality is in {{ i.1 }}</option>
+
+                            
+                        {% endfor %}
+                    </select>
+                {% else %}
+                    <div>Sorry No Service is Avalable</div>
+                {% endif %}
+                <a href="{{ url_for('register_professionals', main_services = main_services)}}" class="btn inz btn-primary">Reset Services</a>
+
+            {% endif %}
+
+        </div>
+        <div class="form-group">
+            <label for="full-name">Full Name:</label>
+            <input id="full-name" class="form-control" type="text" name="full_name" required>
+        </div>
+        <div class="form-group">
+            <label for="register-email">Email:</label>
+            <input id="register-email" class="form-control" type="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="mobile-number">Mobile Number:</label>
+            <input id="mobile-number" class="form-control" type="tel" name="mb_no" pattern="[0-9]{10}" required>
+        </div>
+        <div class="form-group">
+            <label for="register-password">Password:</label>
+            <input id="register-password" class="form-control" type="password" name="password" required>
+        </div>
+        <div class="form-group">
+            <label for="register-address">Address:</label>
+            <input id="register-address" class="form-control" type="text" name="address" required>
+        </div>
+        <div class="form-group">
+            <label for="city">City:</label>
+            <input id="city" class="form-control" type="text" name="city" required>
+        </div>
+        <div class="form-group">
+            <label for="pincode">Pincode:</label>
+            <input id="pincode" class="form-control" type="text" name="pincode" required>
+        </div>
+
+        <div class="form-group">
+            <label for="id-proof">Upload ID Proof (PDF):</label>
+            <input id="id-proof" class="form-control-file" type="file" name="id_proof" accept=".pdf" required>
+        </div>
+        <div class="form-group">
+            <label for="experience">Experience (years):</label>
+            <input id="experience" class="form-control" type="number" name="experience" required>
+        </div>
+        <input id="form-submit" class="btn btn-primary" type="submit" value="Register">
+
+    </form>
+    <div id="switch-form" class="mt-3">
+        <p>Already have an account? <a class="text-link" href="login">Login</a></p>
+    </div>
+</body>
+</html>
+
+

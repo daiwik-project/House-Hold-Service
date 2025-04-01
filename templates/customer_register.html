@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <form id="user-form" class="round-corners" action="/register" method="post">
+        <div class="form-item">
+            <label for="register-name">Full Name:</label>
+            <input id="register-name" class="form-input round-corners" type="text" name="full_name" required>
+        </div>
+        <div class="form-item">
+            <label for="register-email">Email:</label>
+            <input id="register-email" class="form-input round-corners" type="email" name="email" required>
+        </div>
+        <div class="form-item"></div>
+            <label for="register-name">Mobile Number:</label>
+            <input id="register-name" class="form-input round-corners" type="text" name="mb_no" required>
+        </div>
+        <div class="form-item">
+            <label for="register-password">Password:</label>
+            <input id="register-password" class="form-input round-corners" type="password" name="password" required>
+        </div>
+        <div class="form-item">
+            <label for="register-address">Address:</label>
+            <input id="register-address" class="form-input round-corners" type="text" name="address" required>
+        </div>
+        <div class="form-item">
+            <label for="service-type">City:</label>
+            <input id="service-type" class="form-input round-corners" type="text" name="city" required>
+        </div>
+        <div class="form-item">
+            <label for="experience">Pincode:</label>
+            <input id="experience" class="form-input round-corners" type="text" name="pincode" required>
+        </div>
+        <input id="form-submit" class="form-item round-corners" type="submit" value="Register">
+    </form>
+
+    
+</body>
+</html>
